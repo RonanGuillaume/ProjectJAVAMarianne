@@ -13,7 +13,7 @@ public class Company {
 
     public Company(Boss boss) {
         this.boss = boss;
-        this.managementDepartment = new ManagementDepartment();
+        this.managementDepartment = new ManagementDepartment(boss);
         this.departmentsList = new HashMap<>();
     }
 

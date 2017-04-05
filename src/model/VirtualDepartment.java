@@ -8,10 +8,12 @@ import java.util.UUID;
  * on 04/04/2017.
  */
 public abstract class VirtualDepartment {
+    private Leader leader;
     private String name;
     private HashMap<UUID, Employee> employeesList;
 
-    public VirtualDepartment(String name) {
+    public VirtualDepartment(String name, Leader leader) {
+        this.leader = leader;
         this.name = name;
         this.employeesList = new HashMap<>();
     }
@@ -22,6 +24,14 @@ public abstract class VirtualDepartment {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Leader getLeader() {
+        return leader;
+    }
+
+    public void setLeader(Leader leader) {
+        this.leader = leader;
     }
 
     public int getNbEmployees(){

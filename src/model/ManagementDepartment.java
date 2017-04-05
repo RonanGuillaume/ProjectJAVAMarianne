@@ -6,7 +6,7 @@ package model;
  */
 public class ManagementDepartment extends VirtualDepartment{
 
-    public ManagementDepartment() {
-        super("Management Department");
+    public ManagementDepartment(Boss boss) {
+        super("Management Department", boss);
     }
 }
