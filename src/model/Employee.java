@@ -48,4 +48,9 @@ public class Employee extends Person{
     public void setCreditHour(Date creditHour) {
         this.creditHour = creditHour;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+", ID : "+id.toString();
+    }
 }

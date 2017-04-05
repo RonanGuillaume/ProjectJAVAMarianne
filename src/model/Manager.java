@@ -15,6 +15,11 @@ public class Manager extends Employee implements Leader{
     }
 
     @Override
+    public String toString() {
+        return "Manager : "+super.toString() + ", mail : " + email;
+    }
+
+    @Override
     public String getMail() {
         return email;
     }

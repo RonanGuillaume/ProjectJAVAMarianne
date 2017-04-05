@@ -13,6 +13,11 @@ public class Boss extends Person implements Leader{
     }
 
     @Override
+    public String toString() {
+        return "Boss : "+super.toString() + ", mail : " + email;
+    }
+
+    @Override
     public String getMail() {
         return email;
     }

@@ -51,4 +51,9 @@ public abstract class VirtualDepartment {
         // TODO: 05/04/2017 Exception if wrong employee
         employeesList.remove(employee.getId());
     }
+
+    @Override
+    public String toString() {
+        return "Department : "+name+", Nb of members : "+getNbEmployees()+"Leader : "+leader;
+    }
 }
