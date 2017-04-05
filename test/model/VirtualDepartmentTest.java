@@ -8,7 +8,6 @@ import org.junit.Test;
  * on 04/04/2017.
  */
 public class VirtualDepartmentTest {
-
     @BeforeClass
     static public void setUpBeforeClass() throws Exception {
 
@@ -26,6 +25,11 @@ public class VirtualDepartmentTest {
 
     @Test
     public void addEmployee() throws Exception {
+
+    }
+
+    @Test
+    public void removeEmployee() throws Exception {
 
     }
 

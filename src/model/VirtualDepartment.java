@@ -36,4 +36,9 @@ public abstract class VirtualDepartment {
     public void addEmployee(Employee employee){
         employeesList.put(employee.getId(), employee);
     }
+
+    public void removeEmployee(Employee employee){
+        // TODO: 05/04/2017 Exception if wrong employee
+        employeesList.remove(employee.getId());
+    }
 }
