@@ -14,6 +14,11 @@ public class Manager extends Employee implements Leader{
         this.email = email;
     }
 
+    public Manager(Employee employee, String email){
+        super(employee.getName(), employee.getFirstName(), employee.getStartHour(), employee.getEndHour(), employee.getCreditHour());
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Manager : "+super.toString() + ", mail : " + email;

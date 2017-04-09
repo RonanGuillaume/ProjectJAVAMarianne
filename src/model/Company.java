@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * Created by Ronan
@@ -41,5 +42,17 @@ public class Company {
     public void removeDepartment(StandardDepartment standardDepartment){
         // TODO: 05/04/2017 Exception if wrong department
         departmentsList.remove(standardDepartment.getName());
+    }
+
+    public HashMap<UUID, Employee> getAllEmployees(){
+        HashMap<UUID, Employee> result = new HashMap<>();
+
+        result.putAll(managementDepartment.getEmployeesList());
+
+        for (StandardDepartment standardDepartment : departmentsList.values()) {
+            result.putAll(standardDepartment.getEmployeesList());
+        }
+
+        return result;
     }
 }

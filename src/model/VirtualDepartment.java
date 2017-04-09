@@ -34,6 +34,10 @@ public abstract class VirtualDepartment {
         this.leader = leader;
     }
 
+    public HashMap<UUID, Employee> getEmployeesList() {
+        return employeesList;
+    }
+
     public int getNbEmployees(){
         return employeesList.size();
     }
