@@ -7,5 +7,4 @@ package model;
 public interface Leader{
     String getMail();
     void setMail(String email);
-    Object clone() throws CloneNotSupportedException;
 }

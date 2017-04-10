@@ -1,5 +1,8 @@
 package model;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -11,21 +14,17 @@ public class Company {
     private Boss boss;
     private ManagementDepartment managementDepartment;
     private HashMap<String, StandardDepartment> departmentsList;
+    private ArrayList<Tally> talliesOfTheDay;
 
     public Company(Boss boss) {
         this.boss = boss;
         this.managementDepartment = new ManagementDepartment(boss);
         this.departmentsList = new HashMap<>();
+        this.talliesOfTheDay = new ArrayList<>();
     }
 
     public Boss getBoss() {
-        Boss result = null;
-        try {
-            result = (Boss) boss.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return boss;
     }
 
     public ManagementDepartment getManagementDepartment() {
@@ -55,6 +54,21 @@ public class Company {
         }
     }
 
+    public void addTally(Tally tally){
+        talliesOfTheDay.add(tally);
+    }
+
+    //In order to refresh our list if we are another day. We must use this method each time we make an action into the controller
+    public void checkTalliesOfTheDay(){
+        if (talliesOfTheDay.size() != 0){
+            Date today = new Date(System.currentTimeMillis());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            if (!simpleDateFormat.format(today).equalsIgnoreCase(simpleDateFormat.format(talliesOfTheDay.get(0).getCheckDate()))){
+                talliesOfTheDay = new ArrayList<>();
+            }
+        }
+    }
+
     public HashMap<UUID, Employee> getAllEmployees(){
         HashMap<UUID, Employee> result = new HashMap<>();
 
@@ -66,4 +80,6 @@ public class Company {
 
         return result;
     }
+
+
 }

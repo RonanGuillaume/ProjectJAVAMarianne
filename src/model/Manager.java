@@ -33,20 +33,4 @@ public class Manager extends Employee implements Leader{
     public void setMail(String email) {
         this.email = email;
     }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        Object o = null;
-        try {
-            // We retrieve the instance to return thank to
-            // the method super.clone()
-            o = super.clone();
-        } catch(CloneNotSupportedException e) {
-            // Should be never happened if we implement
-            // Cloneable
-            e.printStackTrace(System.err);
-        }
-        // We return the object
-        return o;
-    }
 }

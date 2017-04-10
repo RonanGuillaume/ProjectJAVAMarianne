@@ -15,7 +15,7 @@ public class Main {
         System.out.println(simpleDateFormat2.format(calendar.getTime()) + " day(s) " + simpleDateFormat.format(calendar.getTime()));
         System.out.println(employee);
         System.out.println(Employee.simpleDateFormatEmployee.format(employee.getStartHour()));
-        Tally tally = new Tally("23-15-2017 12:56");
+        Tally tally = new Tally(employee, "23-15-2017 12:56");
         System.out.println(Tally.simpleDateFormatTally.format(tally.getCheckDate()));
     }
 }

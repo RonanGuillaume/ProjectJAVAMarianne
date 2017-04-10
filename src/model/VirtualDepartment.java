@@ -64,25 +64,4 @@ public abstract class VirtualDepartment implements Cloneable{
     public String toString() {
         return "Department : "+name+", Nb of members : "+getNbEmployees()+"Leader : "+leader;
     }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        VirtualDepartment virtualDepartment = null;
-        try {
-            // On récupère l'instance à renvoyer par l'appel de la 
-            // méthode super.clone()
-            virtualDepartment = (VirtualDepartment) super.clone();
-        } catch(CloneNotSupportedException cnse) {
-            // Ne devrait jamais arriver car nous implémentons 
-            // l'interface Cloneable
-            cnse.printStackTrace(System.err);
-        }
-
-        // On clone l'attribut de type Patronyme qui n'est pas immuable.
-        virtualDepartment.leader = (Leader) leader.clone();
-
-
-        // on renvoie le clone
-        return virtualDepartment;
-    }
 }
