@@ -7,7 +7,7 @@ import java.util.UUID;
  * Created by Ronan
  * on 04/04/2017.
  */
-public abstract class VirtualDepartment {
+public abstract class VirtualDepartment implements Cloneable{
     private Leader leader;
     private String name;
     private HashMap<UUID, Employee> employeesList;
@@ -43,8 +43,11 @@ public abstract class VirtualDepartment {
     }
 
     public Employee getEmployeeById(UUID id){
-        // TODO: 04/04/2017 Exception if wrong id
-        return employeesList.get(id);
+        Employee result = employeesList.get(id);
+        if(result == null){
+            throw new IllegalArgumentException("This employee doesn't exist in this department");
+        }
+        return result;
     }
 
     public void addEmployee(Employee employee){
@@ -52,12 +55,34 @@ public abstract class VirtualDepartment {
     }
 
     public void removeEmployee(Employee employee){
-        // TODO: 05/04/2017 Exception if wrong employee
-        employeesList.remove(employee.getId());
+        if(employeesList.remove(employee.getId()) == null){
+            throw new IllegalArgumentException("This employee doesn't exist in this department");
+        }
     }
 
     @Override
     public String toString() {
         return "Department : "+name+", Nb of members : "+getNbEmployees()+"Leader : "+leader;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        VirtualDepartment virtualDepartment = null;
+        try {
+            // On récupère l'instance à renvoyer par l'appel de la 
+            // méthode super.clone()
+            virtualDepartment = (VirtualDepartment) super.clone();
+        } catch(CloneNotSupportedException cnse) {
+            // Ne devrait jamais arriver car nous implémentons 
+            // l'interface Cloneable
+            cnse.printStackTrace(System.err);
+        }
+
+        // On clone l'attribut de type Patronyme qui n'est pas immuable.
+        virtualDepartment.leader = (Leader) leader.clone();
+
+
+        // on renvoie le clone
+        return virtualDepartment;
     }
 }

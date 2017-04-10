@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Date;
-
 /**
  * Created by Ronan
  * on 04/04/2017.
@@ -9,13 +7,15 @@ import java.util.Date;
 public class Manager extends Employee implements Leader{
     private String email;
 
-    public Manager(String name, String firstName, Date startHour, Date endHour, Date creditHour, String email) {
-        super(name, firstName, startHour, endHour, creditHour);
+    public Manager(String name, String firstName, String startHour, String endHour, String email) {
+        super(name, firstName, startHour, endHour);
         this.email = email;
     }
 
     public Manager(Employee employee, String email){
-        super(employee.getName(), employee.getFirstName(), employee.getStartHour(), employee.getEndHour(), employee.getCreditHour());
+        super(employee.getName(), employee.getFirstName(),
+                Employee.simpleDateFormatEmployee.format(employee.getStartHour()),
+                Employee.simpleDateFormatEmployee.format(employee.getEndHour()));
         this.email = email;
     }
 
@@ -32,5 +32,21 @@ public class Manager extends Employee implements Leader{
     @Override
     public void setMail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Object o = null;
+        try {
+            // We retrieve the instance to return thank to
+            // the method super.clone()
+            o = super.clone();
+        } catch(CloneNotSupportedException e) {
+            // Should be never happened if we implement
+            // Cloneable
+            e.printStackTrace(System.err);
+        }
+        // We return the object
+        return o;
     }
 }

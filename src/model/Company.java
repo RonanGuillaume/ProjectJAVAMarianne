@@ -19,7 +19,13 @@ public class Company {
     }
 
     public Boss getBoss() {
-        return boss;
+        Boss result = null;
+        try {
+            result = (Boss) boss.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     public ManagementDepartment getManagementDepartment() {
@@ -31,8 +37,12 @@ public class Company {
     }
 
     public StandardDepartment getDepartmentByName(String name){
-        // TODO: 04/04/2017 Exception if wrong name
-        return departmentsList.get(name);
+        StandardDepartment result = departmentsList.get(name);
+
+        if(result == null){
+            throw new IllegalArgumentException("This department doesn't exist in this company");
+        }
+        return result;
     }
 
     public void addDepartment(StandardDepartment department){
@@ -40,8 +50,9 @@ public class Company {
     }
 
     public void removeDepartment(StandardDepartment standardDepartment){
-        // TODO: 05/04/2017 Exception if wrong department
-        departmentsList.remove(standardDepartment.getName());
+        if(departmentsList.remove(standardDepartment.getName()) == null){
+            throw new IllegalArgumentException("This department doesn't exist in this company");
+        }
     }
 
     public HashMap<UUID, Employee> getAllEmployees(){
