@@ -1,8 +1,6 @@
 package model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by Ronan
@@ -10,20 +8,14 @@ import java.util.Date;
  */
 public class Tally {
     private Employee employee;
-    private Date checkDate;
+    private LocalDateTime checkDate;
 
-    public static SimpleDateFormat simpleDateFormatTally = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-
-    public Tally(Employee employee, String checkDate) {
-        try {
-            this.employee = employee;
-            this.checkDate = simpleDateFormatTally.parse(checkDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public Tally(Employee employee, LocalDateTime checkDate) {
+        this.employee = employee;
+        this.checkDate = checkDate;
     }
 
-    public Date getCheckDate() {
+    public LocalDateTime getCheckDate() {
         return checkDate;
     }
 

@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by Ronan
  * on 04/04/2017.
@@ -7,15 +9,13 @@ package model;
 public class Manager extends Employee implements Leader{
     private String email;
 
-    public Manager(String name, String firstName, String startHour, String endHour, String email) {
+    public Manager(String name, String firstName, LocalDateTime startHour, LocalDateTime endHour, String email) {
         super(name, firstName, startHour, endHour);
         this.email = email;
     }
 
     public Manager(Employee employee, String email){
-        super(employee.getName(), employee.getFirstName(),
-                Employee.simpleDateFormatEmployee.format(employee.getStartHour()),
-                Employee.simpleDateFormatEmployee.format(employee.getEndHour()));
+        super(employee.getName(), employee.getFirstName(), employee.getStartHour(), employee.getEndHour());
         this.email = email;
     }
 

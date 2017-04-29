@@ -7,7 +7,7 @@ import java.util.*;
  * Created by Ronan
  * on 04/04/2017.
  */
-public class Company extends Observable {
+public class Company extends Observable implements Observer{
     private Boss boss;
     private ManagementDepartment managementDepartment;
     private HashMap<String, StandardDepartment> departmentsList;
@@ -83,5 +83,8 @@ public class Company extends Observable {
         return result;
     }
 
-
+    @Override
+    public void update(Observable o, Object arg) {
+        setChanged();
+    }
 }

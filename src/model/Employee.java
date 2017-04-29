@@ -1,9 +1,7 @@
 package model;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -12,53 +10,45 @@ import java.util.UUID;
  */
 public class Employee extends Person{
     private UUID id;
-    private Date startHour;
-    private Date endHour;
-    private Date creditHour;
+    private LocalDateTime startHour;
+    private LocalDateTime endHour;
+    private LocalDateTime creditHour;
     private ArrayList<Tally> tallies;
 
-
-    public static SimpleDateFormat simpleDateFormatEmployee = new SimpleDateFormat("HH:mm");
-
-    public Employee(String name, String firstName, String startHour, String endHour) {
+    public Employee(String name, String firstName, LocalDateTime startHour, LocalDateTime endHour) {
         super(name, firstName);
         tallies = new ArrayList<>();
         this.id = UUID.randomUUID();
-        try {
-
-            this.startHour = simpleDateFormatEmployee.parse(startHour);
-            this.endHour = simpleDateFormatEmployee.parse(endHour);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        this.creditHour = new Date(0);
+        this.startHour = startHour;
+        this.endHour = endHour;
+        this.creditHour = LocalDateTime.of(0, 1, 1, 0, 0);
     }
 
     public UUID getId() {
         return id;
     }
 
-    public Date getStartHour() {
+    public LocalDateTime getStartHour() {
         return startHour;
     }
 
-    public void setStartHour(Date startHour) {
+    public void setStartHour(LocalDateTime startHour) {
         this.startHour = startHour;
     }
 
-    public Date getEndHour() {
+    public LocalDateTime getEndHour() {
         return endHour;
     }
 
-    public void setEndHour(Date endHour) {
+    public void setEndHour(LocalDateTime endHour) {
         this.endHour = endHour;
     }
 
-    public Date getCreditHour() {
+    public LocalDateTime getCreditHour() {
         return creditHour;
     }
 
-    public void setCreditHour(Date creditHour) {
+    public void setCreditHour(LocalDateTime creditHour) {
         this.creditHour = creditHour;
     }
 
